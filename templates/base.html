@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='/css/imagens/logo.jpg') }}" alt="Logo da Barbearia">
+        </div>
+        <nav>
+            <ul>
+                <li class="menu"><a href="{{ url_for('home') }}">Página Inicial</a></li>
+                <li class="menu"><a href="{{ url_for('sobre') }}">Sobre</a></li>
+                <li class="menu"><a href="{{ url_for('servicos') }}">Serviços</a></li>
+                <li class="menu"><a href="{{ url_for('contato') }}">Contato</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="login"><a href="{{ url_for('login') }}">Login</a></li>
+                    <li class="login"><a href="{{ url_for('registro') }}">Registro</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+        
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+             {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Barbearia. Todos os direitos reservados.</p>
+        <a href="#">Política de Privacidade</a> | <a href="#">Termos de Uso</a>
+    </footer>
+</body>
+</html>

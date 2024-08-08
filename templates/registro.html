@@ -1,0 +1,34 @@
+<Title> Registro - Barbearia </Title>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<body>
+    <main>
+        <section class="register-section">
+            <h2>Registre-se</h2>
+            <form action="{{ url_for('registro') }}" method="POST">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmar Senha:</label>
+                    <input type="password" id="confirm-password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="btn">Registrar</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+{% endblock %}

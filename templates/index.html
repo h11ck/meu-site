@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Bem vindo à Barbearia</h1>
+    <p>Onde você encontra os melhores cortes e cuidados para seu estilo.</p>
+</section>    
+    <img src="{{ url_for ('static', filename ='/css/imagens/barb.jpg') }}" alt="barbearia" class="barbearia">
+    
+<section class="services">
+       <h2>Nossos Serviços</h2>
+       <div class="row">
+           <div class="column service-item">
+             <img src="{{ url_for('static', filename='css/imagens/service1.jpg') }}" alt="Corte de cabelo">
+            <h3>Corte de Cabelo</h3>
+             <p>Experimente um novo visual com nossos cortes profissionais.</p>
+        </div>
+        <div class="column service-item">
+            <img src="{{ url_for('static', filename='css/imagens/service2.jpg') }}" alt="Barba">
+            <h3>Barba</h3>
+            <p>Deixe sua barba impecável com nossos especialistas.</p>
+        </div>
+        <div class="column service-item">
+            <img src="{{ url_for('static', filename='css/imagens/service3.jpg') }}" alt="Tratamento Capilar">
+            <h3>Tratamento Capilar</h3>
+            <p>Cuide do seu cabelo com nossos tratamentos exclusivos.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="appointments">
+    <h2>Agende Seu Horário</h2>
+    <form action="{{ url_for('schedule_appointment') }}" method="post">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Hora:</label>
+        <input type="time" id="time" name="time" required>
+
+        <input type="submit" value="Agendar">
+    </form>
+</section>
+
+{% endblock %}
+
